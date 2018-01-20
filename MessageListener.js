@@ -8,12 +8,11 @@ module.exports = function() {
     var MessageListener = {};
 
     /**
-     * @description 
-     * @param 
-     * @param 
-     * @return 
+     * @description Ecoute et réagit aux messages des membres de la guilde
+     * @param client - Le client Discord
+     * @param debug - Booléen
      */
-    MessageListener.listen = function(client){
+    MessageListener.listen = function(client, debug){
         client.on('message', message => {
             if (message.content === 'ping') {
                 message.reply('pong');

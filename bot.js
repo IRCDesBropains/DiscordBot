@@ -1,21 +1,11 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+var messageListener = require("./MessageListener");
 
 client.on('ready', () => {
-    console.log('I am ready!');
+	messageListener.listen(client);
 });
 
-client.on('message', message => {
-    if (message.content === 'ping') {
-    	message.reply('pong');
-  	}
-    if (message.content === 'hello') {
-    	message.reply('carotte');
-  	}
-    if (message.content === 'IRC ...') {
-    	message.reply('des Bropains !');
-  	}
-});
 
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);

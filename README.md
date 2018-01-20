@@ -1,5 +1,4 @@
 # DiscordBot
 
-Here we perform a request to see if the webhook is active... :-/, I think it's working now !
-
-Our discord bot to process amazing features !
+This discord bot is designed to be easy to use.
+It will implements some basics features to an usage on a private discord server.

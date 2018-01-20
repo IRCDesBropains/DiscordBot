@@ -1,13 +1,36 @@
 {
-  "name": "Test",
-  "description": "Test",
-  "version": "0.0.0",
+  "name": "disocrdbot",
+  "version": "0.1.0",
+  "description": "A bot to do everything on our discord server",
   "main": "bot.js",
-  "scripts": {
-    "start": "node bot.js"
-  },
   "dependencies": {
-    "discord.js": "11.1.0",
-    "request": "2.81.0"
-  }
+    "battlenet-api": "^0.13.0",
+    "body-parser": "^1.15.2",
+    "discord.js": "^11.1.0",
+    "express": "^4.14.0",
+    "fs": "0.0.1-security",
+    "multer": "^1.2.0",
+    "node-opus": "^0.2.4",
+    "overwatch-api": "0.0.4",
+    "promise": "^7.1.1",
+    "request": "^2.81.0",
+    "sequelize": "^3.24.1",
+    "transloadit": "1.9.1",
+    "use-strict": "^1.0.1"
+  },
+  "devDependencies": {
+    "mysql": "^2.11.1",
+    "request": "^2.81.0",
+    "youtube-audio-stream": "0.0.26"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Milodupipo@bitbucket.org/gamebotteam/gamebotdiscord.git"
+  },
+  "author": "Milow&Josstoh",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/gamebotteam/gamebotdiscord#readme"
 }

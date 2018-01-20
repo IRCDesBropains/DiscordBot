@@ -12,6 +12,9 @@ client.on('message', message => {
     if (message.content === 'hello') {
     	message.reply('carotte');
   	}
+    if (message.content === 'IRC ...') {
+    	message.reply('des Bropains !');
+  	}
 });
 
 // THIS  MUST  BE  THIS  WAY

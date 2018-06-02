@@ -3,10 +3,7 @@ const client = new Discord.Client();
 var messageListener = require("./MessageListener");
 
 var debug = true;
-if(debug)
-	TOKEN = "NDA0NDEwMDQ1Mzg4ODE2Mzg0.DUVcdw.Ool5LNxfiiR3uPzyEnPwzInvQdY";
-else
-	TOKEN = process.env.BOT_TOKEN;
+TOKEN = process.env.BOT_TOKEN;
 
 
 client.on('ready', () => {

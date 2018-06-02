@@ -3,7 +3,10 @@ const client = new Discord.Client();
 var messageListener = require("./MessageListener");
 
 var debug = true;
-TOKEN = process.env.BOT_TOKEN;
+if(debug)
+	TOKEN = "NDA0NDEwMDQ1Mzg4ODE2Mzg0.DUVcdw.Ool5LNxfiiR3uPzyEnPwzInvQdY";
+else
+	TOKEN = process.env.BOT_TOKEN;
 
 
 client.on('ready', () => {
@@ -15,7 +18,7 @@ client.on('guildMemberAdd', member => {
     return channel.send('Bienvenue sur le serveur des Bropains, ' + member.displayName)
   }).catch(console.error)
 })
-
+/*
 client.on('message', message => {
 
   if (message.content.startsWith('!play')) {
@@ -44,7 +47,7 @@ client.on('message', message => {
     	})
   	}
 });
-
+*/
 
 // THIS  MUST  BE  THIS  WAY
 client.login(TOKEN);

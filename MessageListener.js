@@ -1,8 +1,9 @@
 /************************************************* 
- *            MODULE MESSAGE_LISTENER            *
+*            MODULE MESSAGE_LISTENER             *
 *************************************************/
 
 var movieRecommendation = require("./MovieRecommendation/MovieRecommendation");
+var eventsFactory = require("./Events/EventsFactory");
 
 
 module.exports = function() {
@@ -18,7 +19,13 @@ module.exports = function() {
             if (message.content === 'ping') {
                 message.reply('pong');
             }
-            if (message.content.startsWith("/film recommend")) {
+            else if (message.content === '/help') {
+                message.reply('Liste des commandes utilisables :\nAucune');
+            }
+            else if (message.content === '/event') {
+                eventsFactory.build("BLIND_BID");
+            }
+            else if (message.content.startsWith("/film recommend")) {
                 var str = message.content.split(" ");
                 var movieName = "";
                 // Get the movie's name
@@ -28,11 +35,12 @@ module.exports = function() {
                 movieName = movieName.substring(0, movieName.length - 1)
                 // Predict likelability
                 movieRecommendation.isRecommended(movieName, debug, function(res){
+                    res = parseInt(res * 100) / 100;
                     if(res > 0.25){
-                        message.reply("Je te recommande ce film !");
+                        message.reply("Je te recommande ce film (score : " + res + ") !");
                     }
                     else{
-                        message.reply("Je ne pense pas qu'il te plaise ...");                        
+                        message.reply("Je ne pense pas qu'il te plaise ... (score : " + res + ")");                        
                     }
                 });
             }

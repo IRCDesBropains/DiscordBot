@@ -12,8 +12,9 @@ module.exports = function() {
         allocine.getGenres(movieName, debug, function(res){
             if(debug)
                 console.log("Genres de " + movieName + " : " + res);
-            
-            recommendation.predict(toBinary(res), debug, function(res){
+            var rating = res[res.length - 1];
+            res.pop();
+            recommendation.predict(toBinary(res, rating), debug, function(res){
                 if(debug)
                     console.log("Film recommandé : " + res);
                 callback(res);
@@ -24,7 +25,7 @@ module.exports = function() {
     return MovieRecommendation;
 }();
 
-function toBinary(genres){
+function toBinary(genres, rating){
     var binary = {
             "Action": 0,
             "Adventure": 0,
@@ -64,5 +65,6 @@ function toBinary(genres){
     for(var i = 0; i < index.length; i++){
         res.push((binary[index[i]]));
     }
+    res.push(rating);
     return res;
 }

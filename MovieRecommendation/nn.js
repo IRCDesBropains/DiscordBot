@@ -12,11 +12,11 @@ var genreRating = {
     "Adult": 0,
     "Adventure": 0.15,
     "Animation": 0.15,
-    "Biography": 0,
+    "Biography": 0.0,
     "Comedy": 0.08,
     "Crime": 0,
-    "Documentary": 0,
-    "Drama": 0,
+    "Documentary": 0.0,
+    "Drama": 0.0,
     "Family": 0,
     "Fantasy": 0.15,
     "FilmNoir": 0,
@@ -34,7 +34,7 @@ var genreRating = {
     "Sport": 0,
     "TalkShow": 0,
     "Thriller": 0.08,
-    "War": 0,
+    "War": 0.0,
     "Western": 0.15,
     "Rating": 0,
 };
@@ -73,6 +73,7 @@ csv.fromPath("../Datasets/imdb.csv", { delimiter: "," })
                 "Thriller": data[41],
                 "War": data[42],
                 "Western": data[43],
+                "Presse": data[5],
                 "Rating": 0
             });
     })
@@ -92,9 +93,12 @@ csv.fromPath("../Datasets/imdb.csv", { delimiter: "," })
             });
 
             for (var j = 0; j < index.length; j++) {
-                if (file[i][index[j]] == 1)
-                    file[i].Rating += genreRating[index[j]];
+                if (index[j] != "Presse" && file[i][index[j]] == 1){
+                    file[i].Rating += parseInt(genreRating[index[j]]);
+                }
             }
+            if(file[i].Presse != "")
+                file[i].Rating += (file[i].Presse / 50);
         }
         neural_network(file);
     });
@@ -107,11 +111,11 @@ function neural_network(file) {
             input: [file[i].Action, file[i].Adventure, file[i].Animation, file[i].Biography,
             file[i].Comedy, file[i].Crime, file[i].Documentary, file[i].Drama, file[i].Family, file[i].Fantasy,
             file[i].History, file[i].Horror, file[i].Musical,
-            file[i].Romance, file[i].SciFi, file[i].Thriller, file[i].War, file[i].Western
+            file[i].Romance, file[i].SciFi, file[i].Thriller, file[i].War, file[i].Western, file[i].Presse / 50
             ], output: [file[i].Rating]
         });
     }
-    var test = [];
+    /*var test = [];
     for (var i = 500; i < 14000; i++) {
         test.push({
             input: [file[i].Action, file[i].Adventure, file[i].Animation, file[i].Biography,
@@ -120,14 +124,14 @@ function neural_network(file) {
             file[i].Romance, file[i].SciFi, file[i].Thriller, file[i].War, file[i].Western
             ], output: [file[i].Rating]
         });
-    }
+    }*/
     var net = nn({
         // hidden layers eg. [ 4, 3 ] => 2 hidden layers, with 4 neurons in the first, and 3 in the second. 
         layers: [4, 3],
         // maximum training epochs to perform on the training data 
-        iterations: 15000,
+        iterations: 200,
         // maximum acceptable error threshold 
-        errorThresh: 0.0014,
+        errorThresh: 0.0001,
         // activation function ('logistic' and 'hyperbolic' supported) 
         activation: 'logistic',
         // learning rate 
@@ -135,7 +139,7 @@ function neural_network(file) {
         // learning momentum 
         momentum: 0.4,
         // logging frequency to show training progress. 0 = never, 10 = every 10 iterations. 
-        log: 10
+        log: 1
     });
 
     net.train(data);

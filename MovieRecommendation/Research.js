@@ -32,14 +32,15 @@ module.exports = function() {
             // Informations sur un film particulier 
             allocine.api('movie', {code: movieCode}, function(error, result) {
                 if(error) { console.log('Error : '+ error); return; }
-            
                 var genres = result.movie.genre;
                 var res = [];
                 for(var g in genres){
                     var genre = toEnglish(genres[g].$);
-                    if(genre != undefined)
+                    if(genre != undefined){
                         res.push(genre);
+                    }
                 }
+                res.push(result.movie.statistics.pressRating / 25);
                                 
                 callback(res);
             });

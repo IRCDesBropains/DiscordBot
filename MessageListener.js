@@ -23,6 +23,7 @@ module.exports = function() {
                 message.reply('Liste des commandes utilisables :\nAucune');
             }
             else if (message.content === '/event') {
+                message.reply('Liste des events : Aucun');
                 //eventsFactory.build("BLIND_BID");
             }
             /*else if (message.content.startsWith("/film recommend")) {

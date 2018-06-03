@@ -24,7 +24,7 @@ module.exports = function() {
             }
             else if (message.content === '/event') {
                 message.reply('Liste des events : Aucun');
-                eventsFactory.build("BLIND_BID");
+                //eventsFactory.build("BLIND_BID");
             }
             /*else if (message.content.startsWith("/film recommend")) {
                 var str = message.content.split(" ");

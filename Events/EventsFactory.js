@@ -15,7 +15,7 @@ module.exports = function() {
     EventFactory.build = function(name, message, debug){
         switch(name) {
             case "BLIND_BID":
-                message.reply("creation du blindbid object");
+                blindBid.create(message, debug);
                 break;
         } 
     };

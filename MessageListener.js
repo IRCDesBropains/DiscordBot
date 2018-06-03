@@ -17,14 +17,14 @@ module.exports = function() {
     MessageListener.listen = function(client, debug){
         client.on('message', message => {
             if (message.content === 'ping') {
-                message.reply('pong');
+                message.reply('oui je veux faire un truc');
             }
             else if (message.content === '/help') {
                 message.reply('Liste des commandes utilisables :\nAucune');
             }
             else if (message.content === '/event') {
                 message.reply('Liste des events : Aucun');
-                //eventsFactory.build("BLIND_BID");
+                eventsFactory.build("BLIND_BID", message);
             }
             /*else if (message.content.startsWith("/film recommend")) {
                 var str = message.content.split(" ");

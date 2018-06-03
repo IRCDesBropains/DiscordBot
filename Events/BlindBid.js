@@ -10,7 +10,7 @@ module.exports = function() {
      * @param debug - Booléen
      */
     BlindBid.create = function(message, debug){
-        
+        message.reply("creation du blindbid object");
     };
                                 
     return BlindBid;

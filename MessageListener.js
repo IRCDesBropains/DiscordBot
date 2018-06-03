@@ -3,7 +3,7 @@
 *************************************************/
 
 var movieRecommendation = require("./MovieRecommendation/MovieRecommendation");
-//var eventsFactory = require("./Events/EventsFactory");
+var eventsFactory = require("./Events/EventsFactory");
 
 
 module.exports = function() {
@@ -19,12 +19,12 @@ module.exports = function() {
             if (message.content === 'ping') {
                 message.reply('pong');
             }
-            /*else if (message.content === '/help') {
+            else if (message.content === '/help') {
                 message.reply('Liste des commandes utilisables :\nAucune');
             }
             else if (message.content === '/event') {
-                eventsFactory.build("BLIND_BID");
-            }*/
+                //eventsFactory.build("BLIND_BID");
+            }
             /*else if (message.content.startsWith("/film recommend")) {
                 var str = message.content.split(" ");
                 var movieName = "";

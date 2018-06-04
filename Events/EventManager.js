@@ -6,6 +6,8 @@ module.exports = function() {
     var EventManager = {};
 
     EventManager.startEvent = function(objEvent, message, debug){
+        if(debug)
+            message.reply("[EventManager][startEvent] Démarrage d'un event"); //@debug
         objEvent.create(message, debug);
     }
 

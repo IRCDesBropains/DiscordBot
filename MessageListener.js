@@ -25,7 +25,7 @@ module.exports = function() {
             }
             else if (message.content === '/event') {
                 message.reply('Liste des events : Aucun');
-                var event = eventsFactory.build("BLIND_BID", message);
+                var event = eventsFactory.build("BLIND_BID", message, debug);
                 eventManager.start(event, message, debug);
                 event.addPlayer("Nom20", 20, message, debug);
                 event.addPlayer("Nom40", 40, message, debug);

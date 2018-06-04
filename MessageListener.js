@@ -4,7 +4,7 @@
 
 var movieRecommendation = require("./MovieRecommendation/MovieRecommendation");
 var eventsFactory = require("./Events/EventsFactory");
-var eventManager = require("./EventManager");
+var eventManager = require("./Events/EventManager");
 
 
 module.exports = function() {

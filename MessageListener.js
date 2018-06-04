@@ -4,6 +4,7 @@
 
 var movieRecommendation = require("./MovieRecommendation/MovieRecommendation");
 var eventsFactory = require("./Events/EventsFactory");
+var eventManager = require("./EventManager");
 
 
 module.exports = function() {
@@ -24,7 +25,13 @@ module.exports = function() {
             }
             else if (message.content === '/event') {
                 message.reply('Liste des events : Aucun');
-                eventsFactory.build("BLIND_BID", message);
+                var event = eventsFactory.build("BLIND_BID", message);
+                eventManager.start(event, message, debug);
+                event.addPlayer("Nom20", 20, message, debug);
+                event.addPlayer("Nom40", 40, message, debug);
+                event.addPlayer("Nom30", 30, message, debug);
+                event.maxBet(message, debug);
+                eventManager.closeEvent(message, debug);
             }
             /*else if (message.content.startsWith("/film recommend")) {
                 var str = message.content.split(" ");

@@ -27,11 +27,11 @@ module.exports = function() {
                 message.reply('Liste des events : Aucun');
                 var event = eventsFactory.build("BLIND_BID", message, debug);
                 eventManager.start(event, message, debug);
-                event.addPlayer("Nom20", 20, message, debug);
+                /*event.addPlayer("Nom20", 20, message, debug);
                 event.addPlayer("Nom40", 40, message, debug);
                 event.addPlayer("Nom30", 30, message, debug);
                 event.maxBet(message, debug);
-                eventManager.closeEvent(message, debug);
+                eventManager.closeEvent(message, debug);*/
             }
             /*else if (message.content.startsWith("/film recommend")) {
                 var str = message.content.split(" ");

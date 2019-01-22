@@ -28,30 +28,38 @@ module.exports = function() {
                 message.reply('Liste des commandes utilisables :\nAucune');
             }
             else if (message.content === '/getTemperature') {
-                message.reply('coucou :)');
-                message.reply(IP);
-                message.reply(API_KEY);
-                message.reply('http://' + IP + ':5000/data/temperature/' + API_KEY);
-                /*https.get("http://" + IP + ":5000/data/temperature/" + API_KEY, (resp) => {
-                    let data = '';
 
-                    // A chunk of data has been recieved.
-                    resp.on('data', (chunk) => {
-                        data += chunk;
-                    });
+                https.get("http://" + IP + ":5000/data/temperature/" + API_KEY, (resp) => {
+                    const { statusCode } = res;
+                    const contentType = res.headers['content-type'];
 
-                    // The whole response has been received. Print out the result.
-                    resp.on('end', () => {
-                        message.reply(data);
-                        data = JSON.parse(data);
-                        if(data["status"] == "success"){
-                            message.reply("La température de mon petit appart' de bot est de " + data["temperature"] + "°C");
+                    let error;
+                    if (statusCode !== 200) {
+                        error = new Error('Request Failed.\n' +
+                                        `Status Code: ${statusCode}`);
+                    }
+                    if (error) {
+                        console.error(error.message);
+                        // consume response data to free up memory
+                        res.resume();
+                        return;
+                    }
+
+                    res.setEncoding('utf8');
+                    let rawData = '';
+                    res.on('data', (chunk) => { rawData += chunk; });
+                    res.on('end', () => {
+                        try {
+                        const parsedData = JSON.parse(rawData);
+                        console.log(parsedData);
+                        } catch (e) {
+                        console.error(e.message);
                         }
                     });
+                }).on('error', (e) => {
+                console.error(`Got error: ${e.message}`);
+                });
 
-                }).on("error", (err) => {
-                    message.reply("Mon petit appart' de bot est indisponible pour le moment :(");
-                });*/
             }
             /*else if (message.content === '/event') {
                 message.reply('Liste des events : Aucun');

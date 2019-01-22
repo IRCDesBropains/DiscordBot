@@ -17,7 +17,10 @@ module.exports = function() {
     MessageListener.listen = function(client, debug){
         client.on('message', message => {
             if (message.content === 'ping') {
-                message.reply('oui je veux faire un truc');
+                message.reply('pong');
+            }
+            if (message.content === '/say') {
+                message.reply(message.content);
             }
             else if (message.content === '/help') {
                 message.reply('Liste des commandes utilisables :\nAucune');

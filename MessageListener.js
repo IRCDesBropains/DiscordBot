@@ -35,11 +35,10 @@ module.exports = function() {
 
                     let error;
                     if (statusCode !== 200) {
-                        error = new Error('Request Failed.\n' +
-                                        `Status Code: ${statusCode}`);
+                        message.reply("error, pas 200");
                     }
                     if (error) {
-                        console.error(error.message);
+                        message.reply(error.message);
                         // consume response data to free up memory
                         res.resume();
                         return;
@@ -51,13 +50,13 @@ module.exports = function() {
                     res.on('end', () => {
                         try {
                         const parsedData = JSON.parse(rawData);
-                        console.log(parsedData);
+                            message.reply(parsedData);
                         } catch (e) {
-                        console.error(e.message);
+                            message.reply('Got error:');
                         }
                     });
                 }).on('error', (e) => {
-                console.error(`Got error: ${e.message}`);
+                     message.reply('Got error:');
                 });
 
             }

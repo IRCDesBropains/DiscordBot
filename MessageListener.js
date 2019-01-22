@@ -21,21 +21,23 @@ module.exports = function() {
                 message.reply('pong');
             }
             if (message.content === '/say') {
-                message.reply(message.content);
+                //message.reply(message.content);
+                var msg = message.content.split("/say");
+                client.channels.get('136866168454643712').send(msg[1]);
             }
             else if (message.content === '/help') {
                 message.reply('Liste des commandes utilisables :\nAucune');
             }
-            else if (message.content === '/event') {
+            /*else if (message.content === '/event') {
                 message.reply('Liste des events : Aucun');
                 var event = eventsFactory.build("BLIND_BID", message, debug);
                 eventManager.start(event, message, debug);
-                /*event.addPlayer("Nom20", 20, message, debug);
+                event.addPlayer("Nom20", 20, message, debug);
                 event.addPlayer("Nom40", 40, message, debug);
                 event.addPlayer("Nom30", 30, message, debug);
                 event.maxBet(message, debug);
-                eventManager.closeEvent(message, debug);*/
-            }
+                eventManager.closeEvent(message, debug);
+            }*/
             /*else if (message.content.startsWith("/film recommend")) {
                 var str = message.content.split(" ");
                 var movieName = "";

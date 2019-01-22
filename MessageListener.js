@@ -20,8 +20,7 @@ module.exports = function() {
             if (message.content === 'ping') {
                 message.reply('pong');
             }
-            if (message.content === '/say') {
-                //message.reply(message.content);
+            else if (message.content === '/say') {
                 var msg = message.content.split("/say");
                 client.channels.get('136866168454643712').send(msg[1]);
             }

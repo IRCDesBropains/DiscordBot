@@ -32,7 +32,7 @@ module.exports = function() {
                 message.reply(IP);
                 message.reply(API_KEY);
                 message.reply('http://' + IP + ':5000/data/temperature/' + API_KEY);
-                https.get("http://" + IP + ":5000/data/temperature/" + API_KEY, (resp) => {
+                /*https.get("http://" + IP + ":5000/data/temperature/" + API_KEY, (resp) => {
                     let data = '';
 
                     // A chunk of data has been recieved.
@@ -51,7 +51,7 @@ module.exports = function() {
 
                 }).on("error", (err) => {
                     message.reply("Mon petit appart' de bot est indisponible pour le moment :(");
-                });
+                });*/
             }
             /*else if (message.content === '/event') {
                 message.reply('Liste des events : Aucun');

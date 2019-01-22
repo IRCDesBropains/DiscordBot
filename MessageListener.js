@@ -5,25 +5,7 @@
 var movieRecommendation = require("./MovieRecommendation/MovieRecommendation");
 var eventsFactory = require("./Events/EventsFactory");
 var eventManager = require("./Events/EventManager");
-
-function getTemperature(IP, API_KEY, message) {
-        console.log("http://" + IP + ":5000/data/temperature/" + API_KEY);
-        $.ajax({
-            type: 'GET',
-            url: "http://" + IP + ":5000/data/temperature/" + API_KEY,
-            success: function(data){
-                data = JSON.parse(data);
-                if(data["status"] == "success"){
-                    message.reply("La température de mon petit appart' de bot est de " + data["temperature"] + "°C");
-                }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                if(jqXHR.status == 0){
-                    message.reply("Mon petit appart' de bot est indisponible pour le moment :(");
-            }
-        }
-    });
-}
+const https = require('https');
 
 module.exports = function() {
     var MessageListener = {};
@@ -47,6 +29,24 @@ module.exports = function() {
             }
             else if (message.content === '/getTemp') {
                 getTemperature(IP, API_KEY, message);
+                https.get("http://" + IP + ":5000/data/temperature/" + API_KEY, (resp) => {
+                    let data = '';
+
+                    // A chunk of data has been recieved.
+                    resp.on('data', (chunk) => {
+                        data += chunk;
+                    });
+
+                    // The whole response has been received. Print out the result.
+                    resp.on('end', () => {
+                        if(data["status"] == "success"){
+                            message.reply("La température de mon petit appart' de bot est de " + data["temperature"] + "°C");
+                        }
+                    });
+
+                }).on("error", (err) => {
+                    message.reply("Mon petit appart' de bot est indisponible pour le moment :(");
+                });
             }
             /*else if (message.content === '/event') {
                 message.reply('Liste des events : Aucun');

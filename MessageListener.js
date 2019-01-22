@@ -27,7 +27,10 @@ module.exports = function() {
             else if (message.content === '/help') {
                 message.reply('Liste des commandes utilisables :\nAucune');
             }
-            else if (message.content === '/getTemp') {
+            else if (message.content === '/getTemperature') {
+                message.reply('coucou :)');
+                message.reply(IP);
+                message.reply(API_KEY);
                 message.reply('http://' + IP + ':5000/data/temperature/' + API_KEY);
                 https.get("http://" + IP + ":5000/data/temperature/" + API_KEY, (resp) => {
                     let data = '';

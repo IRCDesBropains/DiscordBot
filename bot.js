@@ -4,10 +4,12 @@ var messageListener = require("./MessageListener");
 
 var debug = true;
 TOKEN = process.env.BOT_TOKEN;
+API_KEY = process.env.API_KEY;
+IP = process.env.IP;
 
 
 client.on('ready', () => {
-	messageListener.listen(client, debug);
+	messageListener.listen(client, API_KEY, IP, debug);
 });
 
 client.on('guildMemberAdd', member => {

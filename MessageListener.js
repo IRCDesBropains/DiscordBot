@@ -6,6 +6,24 @@ var movieRecommendation = require("./MovieRecommendation/MovieRecommendation");
 var eventsFactory = require("./Events/EventsFactory");
 var eventManager = require("./Events/EventManager");
 
+function getTemperature(IP, API_KEY, message) {
+        console.log("http://" + IP + ":5000/data/temperature/" + API_KEY);
+        $.ajax({
+            type: 'GET',
+            url: "http://" + IP + ":5000/data/temperature/" + API_KEY,
+            success: function(data){
+                data = JSON.parse(data);
+                if(data["status"] == "success"){
+                    message.reply("La température de mon petit appart' de bot est de " + data["temperature"] + "°C");
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                if(jqXHR.status == 0){
+                    message.reply("Mon petit appart' de bot est indisponible pour le moment :(");
+            }
+        }
+    });
+}
 
 module.exports = function() {
     var MessageListener = {};
@@ -15,7 +33,7 @@ module.exports = function() {
      * @param client - Le client Discord
      * @param debug - Booléen
      */
-    MessageListener.listen = function(client, debug){
+    MessageListener.listen = function(client, API_KEY, IP, debug){
         client.on('message', message => {
             if (message.content === 'ping') {
                 message.reply('pong');
@@ -26,6 +44,9 @@ module.exports = function() {
             }
             else if (message.content === '/help') {
                 message.reply('Liste des commandes utilisables :\nAucune');
+            }
+            else if (message.content === '/getTemp') {
+                getTemperature(IP, API_KEY, message);
             }
             /*else if (message.content === '/event') {
                 message.reply('Liste des events : Aucun');
@@ -59,6 +80,6 @@ module.exports = function() {
 
         });
     };
-                                
+
     return MessageListener;
 }();

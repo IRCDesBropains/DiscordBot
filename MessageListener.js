@@ -28,6 +28,7 @@ module.exports = function() {
                 message.reply('Liste des commandes utilisables :\nAucune');
             }
             else if (message.content === '/getTemp') {
+                message.reply('http://' + IP + ':5000/data/temperature/' + API_KEY);
                 https.get("http://" + IP + ":5000/data/temperature/" + API_KEY, (resp) => {
                     let data = '';
 
@@ -38,6 +39,8 @@ module.exports = function() {
 
                     // The whole response has been received. Print out the result.
                     resp.on('end', () => {
+                        message.reply(data);
+                        data = JSON.parse(data);
                         if(data["status"] == "success"){
                             message.reply("La température de mon petit appart' de bot est de " + data["temperature"] + "°C");
                         }

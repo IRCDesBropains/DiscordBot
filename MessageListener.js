@@ -5,7 +5,7 @@
 var movieRecommendation = require("./MovieRecommendation/MovieRecommendation");
 var eventsFactory = require("./Events/EventsFactory");
 var eventManager = require("./Events/EventManager");
-const https = require('https');
+const https = require('http');
 
 module.exports = function() {
     var MessageListener = {};

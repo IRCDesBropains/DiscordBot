@@ -29,7 +29,7 @@ module.exports = function() {
             }
             else if (message.content === '/getTemperature') {
 
-                request("http://" + IP + ":5000/data/all/" + API_KEY, function (error, response, body) {
+                request("https://www.google.fr/?gws_rd=ssl"/*"http://" + IP + ":5000/data/all/" + API_KEY*/, function (error, response, body) {
                     message.reply('error:', error); // Print the error if one occurred
                     message.reply('statusCode:', response && response.statusCode); // Print the response status code if a response was received
                     message.reply('body:', body); // Print the HTML for the Google homepage.

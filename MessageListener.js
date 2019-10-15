@@ -19,6 +19,8 @@ module.exports = function() {
         client.on('message', message => {
             if (message.content === 'ping') {
                 message.reply('pong');
+                var d = new Date();
+                message.reply("Timestamp : " + d);
             }
             else if (message.content.startsWith("/say")) {
                 var msg = message.content.split("/say");

@@ -29,7 +29,7 @@ module.exports = function() {
             }
             else if (message.content === '/getTemperature') {
 
-                const { file } = await fetch("http://" + IP + ":5000/data/all/" + API_KEY).then(response => response.json());
+                const { file } = await fetch("http://" + IP + ":5000/data/all/" + API_KEY).then(response => response);
 
                 message.channel.send(file);
 

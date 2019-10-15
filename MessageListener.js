@@ -5,7 +5,7 @@
 var movieRecommendation = require("./MovieRecommendation/MovieRecommendation");
 var eventsFactory = require("./Events/EventsFactory");
 var eventManager = require("./Events/EventManager");
-const fetch = require('node-fetch');
+//const fetch = require('node-fetch');
 
 module.exports = function() {
     var MessageListener = {};
@@ -29,7 +29,7 @@ module.exports = function() {
             }
             else if (message.content === '/getTemperature') {
                 const channel = client.channels.find("name", "test_bot");
-                await fetch("http://" + IP + ":5000/data/all/" + API_KEY).then(response => channel.send(reponse));
+                //await fetch("http://" + IP + ":5000/data/all/" + API_KEY).then(response => channel.send(reponse));
 
                 
 

@@ -5,7 +5,7 @@
 var movieRecommendation = require("./MovieRecommendation/MovieRecommendation");
 var eventsFactory = require("./Events/EventsFactory");
 var eventManager = require("./Events/EventManager");
-var request = require('request');
+const fetch = require('node-fetch');
 
 module.exports = function() {
     var MessageListener = {};
@@ -29,12 +29,9 @@ module.exports = function() {
             }
             else if (message.content === '/getTemperature') {
 
-                request("https://www.google.fr/?gws_rd=ssl"/*"http://" + IP + ":5000/data/all/" + API_KEY*/, function (error, response, body) {
-                    message.reply('error:', error); // Print the error if one occurred
-                    message.reply('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-                    message.reply('body:', body); // Print the HTML for the Google homepage.
-                });
+                const { file } = await fetch("http://" + IP + ":5000/data/all/" + API_KEY).then(response => response.json());
 
+                message.channel.send(file);
 
                 /*https.get("http://" + IP + ":5000/data/all/" + API_KEY, (resp) => {
                     const { statusCode } = res;

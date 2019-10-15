@@ -29,9 +29,9 @@ module.exports = function() {
             }
             else if (message.content === '/getTemperature') {
 
-                const { file } = await fetch("http://" + IP + ":5000/data/all/" + API_KEY).then(response => response);
+                const { file } = await fetch("http://" + IP + ":5000/data/all/" + API_KEY).then(message.channel.send(response));
 
-                message.channel.send(file);
+                
 
                 /*https.get("http://" + IP + ":5000/data/all/" + API_KEY, (resp) => {
                     const { statusCode } = res;

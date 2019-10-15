@@ -29,7 +29,7 @@ module.exports = function() {
             }
             else if (message.content === '/getTemperature') {
                 const channel = client.channels.find("name", "test_bot");
-                await fetch("http://" + IP + ":5000/data/all/" + API_KEY).then(channel.send(reponse));
+                await fetch("http://" + IP + ":5000/data/all/" + API_KEY).then(response => channel.send(reponse));
 
                 
 

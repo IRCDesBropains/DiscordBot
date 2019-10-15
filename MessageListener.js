@@ -5,7 +5,7 @@
 var movieRecommendation = require("./MovieRecommendation/MovieRecommendation");
 var eventsFactory = require("./Events/EventsFactory");
 var eventManager = require("./Events/EventManager");
-const https = require('http');
+var request = require('request');
 
 module.exports = function() {
     var MessageListener = {};
@@ -29,7 +29,14 @@ module.exports = function() {
             }
             else if (message.content === '/getTemperature') {
 
-                https.get("http://" + IP + ":5000/data/all/" + API_KEY, (resp) => {
+                request("http://" + IP + ":5000/data/all/" + API_KEY, function (error, response, body) {
+                    console.log('error:', error); // Print the error if one occurred
+                    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+                    console.log('body:', body); // Print the HTML for the Google homepage.
+                });
+
+
+                /*https.get("http://" + IP + ":5000/data/all/" + API_KEY, (resp) => {
                     const { statusCode } = res;
                     const contentType = res.headers['content-type'];
 
@@ -58,7 +65,7 @@ module.exports = function() {
                     });
                 }).on('error', (e) => {
                      message.reply('Got error:');
-                });
+                });*/
 
             }
             /*else if (message.content === '/event') {

@@ -10,19 +10,17 @@ IP = process.env.IP;
 var oldTimestamp = new Date().getTime();
 
 function giveBackMoney(){
-    if(new Date().getTime() - oldTimestamp >= 5000){
+    if(new Date().getTime() - oldTimestamp >= 1000*60*60*24){
 			const channel = client.channels.find("name", "test_bot");
-			channel.send("message envoyé !");
+			channel.send("Hello :)");
 			oldTimestamp = new Date().getTime();
     }
 }
 
-setInterval(giveBackMoney, 2000); //1000*60*45
+setInterval(giveBackMoney, 1000*60*45);
 
 client.on('ready', () => {
 	messageListener.listen(client, API_KEY, IP, debug);
-	const channel = client.channels.find("name", "test_bot");
-	channel.send("coucou :)");
 });
 
 client.on('guildMemberAdd', member => {

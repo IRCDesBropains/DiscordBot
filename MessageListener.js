@@ -46,7 +46,7 @@ module.exports = function() {
 
                     res.setEncoding('utf8');
                     let rawData = '';
-                    res.on('data', (chunk) => { rawData += chunk; });
+                    res.on('data', (chunk) => { rawData += chunk; message.reply(rawData);});
                     res.on('end', () => {
                         try {
                             message.reply(rawData);

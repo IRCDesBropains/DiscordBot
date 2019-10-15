@@ -7,6 +7,9 @@ TOKEN = process.env.BOT_TOKEN;
 API_KEY = process.env.API_KEY;
 IP = process.env.IP;
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 client.on('ready', () => {
 	messageListener.listen(client, API_KEY, IP, debug);
@@ -17,14 +20,13 @@ client.on('ready', () => {
 	channel.send("Timestamp : " + oldTimestamp);
 	channel.send("message envoyé !")
 	while(true){
+		await sleep(1000*60*45);
 		var newTimestamp = new Date().getTime();
 		if(demande){
 			channel.send("message envoyé !")
 			demande = false;
 		}
 		if(newTimestamp - oldTimestamp >= 24*60*60){
-			channel.send("Timestamp : " + oldTimestamp);
-			channel.send("message envoyé !")
 			oldTimestamp = newTimestamp;
 			demande = true;
 		}

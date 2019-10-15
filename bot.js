@@ -17,15 +17,12 @@ function giveBackMoney(){
     }
 }
 
-function myFunction() {
-	
-}
+setInterval(giveBackMoney, 2000); //1000*60*45
 
 client.on('ready', () => {
 	messageListener.listen(client, API_KEY, IP, debug);
 	const channel = client.channels.find("name", "test_bot");
-	channel.send("coucou :)")
-	setInterval(giveBackMoney, 2000); //1000*60*45
+	channel.send("coucou :)");
 });
 
 client.on('guildMemberAdd', member => {

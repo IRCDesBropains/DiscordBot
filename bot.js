@@ -7,30 +7,25 @@ TOKEN = process.env.BOT_TOKEN;
 API_KEY = process.env.API_KEY;
 IP = process.env.IP;
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+var oldTimestamp = new Date().getTime();
+
+function giveBackMoney(){
+    if(new Date().getTime() - oldTimestamp >= 5000){
+			const channel = client.channels.find("name", "test_bot");
+			channel.send("message envoyé !");
+			oldTimestamp = new Date().getTime();
+    }
+}
+
+function myFunction() {
+	
 }
 
 client.on('ready', () => {
 	messageListener.listen(client, API_KEY, IP, debug);
 	const channel = client.channels.find("name", "test_bot");
 	channel.send("coucou :)")
-	var oldTimestamp = new Date().getTime();
-	var demande = true;
-	channel.send("Timestamp : " + oldTimestamp);
-	channel.send("message envoyé !")
-	while(true){
-		await sleep(1000*60*45);
-		var newTimestamp = new Date().getTime();
-		if(demande){
-			channel.send("message envoyé !")
-			demande = false;
-		}
-		if(newTimestamp - oldTimestamp >= 24*60*60){
-			oldTimestamp = newTimestamp;
-			demande = true;
-		}
-	}
+	setInterval(giveBackMoney, 2000); //1000*60*45
 });
 
 client.on('guildMemberAdd', member => {

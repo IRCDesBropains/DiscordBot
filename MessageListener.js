@@ -29,9 +29,9 @@ module.exports = function() {
             else if (message.content === '/help') {
                 message.reply('Liste des commandes utilisables :\nAucune');
             }
-            /*else if (message.content === '/getTemperature') {
+            else if (message.content === '/getTemperature') {
 
-                https.get("http://" + IP + ":5000/data/temperature/" + API_KEY, (resp) => {
+                https.get("http://" + IP + ":5000/data/all/" + API_KEY, (resp) => {
                     const { statusCode } = res;
                     const contentType = res.headers['content-type'];
 
@@ -51,7 +51,8 @@ module.exports = function() {
                     res.on('data', (chunk) => { rawData += chunk; });
                     res.on('end', () => {
                         try {
-                        const parsedData = JSON.parse(rawData);
+                            message.reply(rawData);
+                            const parsedData = JSON.parse(rawData);
                             message.reply(parsedData);
                         } catch (e) {
                             message.reply('Got error:');
@@ -61,7 +62,7 @@ module.exports = function() {
                      message.reply('Got error:');
                 });
 
-            }*/
+            }
             /*else if (message.content === '/event') {
                 message.reply('Liste des events : Aucun');
                 var event = eventsFactory.build("BLIND_BID", message, debug);

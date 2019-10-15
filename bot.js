@@ -10,6 +10,8 @@ IP = process.env.IP;
 
 client.on('ready', () => {
 	messageListener.listen(client, API_KEY, IP, debug);
+	const channel = client.channels.find("name", "test_bot");
+	channel.send("coucou :)")
 });
 
 client.on('guildMemberAdd', member => {

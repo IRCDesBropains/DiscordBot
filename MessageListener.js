@@ -28,8 +28,8 @@ module.exports = function() {
                 message.reply('Liste des commandes utilisables :\nAucune');
             }
             else if (message.content === '/getTemperature') {
-
-                const { file } = await fetch("http://" + IP + ":5000/data/all/" + API_KEY).then(message.channel.send(response));
+                const channel = client.channels.find("name", "test_bot");
+                await fetch("http://" + IP + ":5000/data/all/" + API_KEY).then(channel.send(reponse));
 
                 
 

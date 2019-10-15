@@ -12,6 +12,23 @@ client.on('ready', () => {
 	messageListener.listen(client, API_KEY, IP, debug);
 	const channel = client.channels.find("name", "test_bot");
 	channel.send("coucou :)")
+	var oldTimestamp = new Date().getTime();
+	var demande = true;
+	channel.send("Timestamp : " + oldTimestamp);
+	channel.send("message envoyé !")
+	while(true){
+		var newTimestamp = new Date().getTime();
+		if(demande){
+			channel.send("message envoyé !")
+			demande = false;
+		}
+		if(newTimestamp - oldTimestamp >= 24*60*60){
+			channel.send("Timestamp : " + oldTimestamp);
+			channel.send("message envoyé !")
+			oldTimestamp = newTimestamp;
+			demande = true;
+		}
+	}
 });
 
 client.on('guildMemberAdd', member => {

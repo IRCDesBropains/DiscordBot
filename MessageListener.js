@@ -30,9 +30,9 @@ module.exports = function() {
             else if (message.content === '/getTemperature') {
 
                 request("http://" + IP + ":5000/data/all/" + API_KEY, function (error, response, body) {
-                    console.log('error:', error); // Print the error if one occurred
-                    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-                    console.log('body:', body); // Print the HTML for the Google homepage.
+                    message.reply('error:', error); // Print the error if one occurred
+                    message.reply('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+                    message.reply('body:', body); // Print the HTML for the Google homepage.
                 });
 
 

@@ -11,8 +11,8 @@ var oldTimestamp = new Date().getTime();
 
 function giveBackMoney(){
     if(new Date().getTime() - oldTimestamp >= 1000*60*60*24){
-			const channel = client.channels.find("name", "test_bot");
-			//channel.send("Hello :) <@634498917534269441> <@141972107599806464>");
+			const channel = client.channels.find("name", "japon_2020");
+			channel.send("Hello, <@634498917534269441> <@141972107599806464> ! Ceci est un message automatique quotidien pour vous rappeler de faire le virement de `50.65€` pour les logements au Japon. <@141972107599806464>, tu peux aussi y ajouter les `16€` pour les derniers anniversaires ! Merci d'avance, bisous");
 			oldTimestamp = new Date().getTime();
     }
 }
@@ -20,8 +20,6 @@ function giveBackMoney(){
 setInterval(giveBackMoney, 1000*60*45);
 
 client.on('ready', () => {
-	const channel = client.channels.find("name", "test_bot");
-	channel.send("Hello :) <@136865764975181825>");
 	messageListener.listen(client, API_KEY, IP, debug);
 });
 

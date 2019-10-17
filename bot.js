@@ -12,7 +12,7 @@ var oldTimestamp = new Date().getTime();
 function giveBackMoney(){
     if(new Date().getTime() - oldTimestamp >= 1000*60*60*24){
 			const channel = client.channels.find("name", "test_bot");
-			channel.send("Hello :)");
+			//channel.send("Hello :) <@634498917534269441> <@141972107599806464>");
 			oldTimestamp = new Date().getTime();
     }
 }
@@ -20,6 +20,8 @@ function giveBackMoney(){
 setInterval(giveBackMoney, 1000*60*45);
 
 client.on('ready', () => {
+	const channel = client.channels.find("name", "test_bot");
+	channel.send("Hello :) <@136865764975181825>");
 	messageListener.listen(client, API_KEY, IP, debug);
 });
 

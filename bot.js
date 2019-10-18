@@ -9,15 +9,15 @@ IP = process.env.IP;
 
 var oldTimestamp = new Date().getTime();
 
-function giveBackMoney(){
+function sendDailyMessage(){
     if(new Date().getTime() - oldTimestamp >= 1000*60*60*24){
 			const channel = client.channels.find("name", "japon_2020");
-			channel.send("Hello, <@634498917534269441> ! Ceci est un message automatique quotidien pour te rappeler de faire le virement de `50.65€` pour les logements au Japon. Bisous");
+			//channel.send("");
 			oldTimestamp = new Date().getTime();
     }
 }
 
-setInterval(giveBackMoney, 1000*60*45);
+//setInterval(sendDailyMessage, 1000*60*45);
 
 client.on('ready', () => {
 	messageListener.listen(client, API_KEY, IP, debug);
